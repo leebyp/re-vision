@@ -1,0 +1,38 @@
+<ion-side-menus>
+
+  <ion-pane ion-side-menu-content>
+    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+
+  <ion-side-menu side="left" ng-controller="QuestionsCtrl">
+    <header class="bar bar-header bar-stable">
+      <a nav-clear menu-close href="#/app/landing">
+        <button class="button button-icon icon ion-home"></button>
+      </a>
+      <div class="h1 title">Questions</div>
+    </header>
+    <ion-content class="has-header">
+      <ion-list ng-if="showing.status === 'all'">
+        <ion-item nav-clear menu-close ng-repeat="question in questions" href="#/app/questions/{{question.id}}">
+          {{question.id}}
+        </ion-item>
+      </ion-list>
+      <ion-list ng-if="showing.status === 'flagged'">
+        <ion-item nav-clear menu-close ng-repeat="question in questions | filter : {flagged: true}" href="#/app/questions/{{question.id}}">
+          {{question.id}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <div style="z-index:9999" class="tabs tabs-icon-only">
+      <a class="tab-item" ng-click="show('all')">
+        <i class="icon ion-navicon-round"></i>
+      </a>
+      <a class="tab-item" ng-click="show('flagged')">
+        <i class="icon ion-ios7-flag"></i>
+      </a>
+    </div>
+  </ion-side-menu>
+
+</ion-side-menus>
