@@ -1,0 +1,23 @@
+<ion-view title="Question {{question.id}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button id="flagged" class="button button-icon icon ion-ios7-flag" ng-show="question.flagged" ng-click="flag(question.id)"></button>
+    <button id="unflagged" class="button button-icon icon ion-ios7-flag-outline" ng-hide="question.flagged" ng-click="flag(question.id)"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <h1>{{question.id}}</h1>
+    <p>{{question.text}}</p>
+    <div ng-controller="AnswerCtrl">
+      <div class="button-bar" ng-hide="question.correct">
+        <a class="button" ng-click="answerQuestion(question.id, 'answerA')">A</a>
+        <a class="button" ng-click="answerQuestion(question.id, 'answerB')">B</a>
+        <a class="button" ng-click="answerQuestion(question.id, 'answerC')">C</a>
+        <a class="button" ng-click="answerQuestion(question.id, 'answerD')">D</a>
+      </div>
+      <a class="button button-full" ng-show="question.correct" ng-click="showAnswer(question.id)">Correct Answer</a>
+    </div>
+    <div><img src="{{question.image}}"></div>
+  </ion-content>
+</ion-view>
